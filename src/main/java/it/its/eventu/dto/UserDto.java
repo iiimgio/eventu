@@ -1,5 +1,6 @@
 package it.its.eventu.dto;
 
+import ch.qos.logback.core.model.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PersoaDto {
+public class UserDto {
+    public Model model;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

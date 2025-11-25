@@ -1,4 +1,5 @@
-package it.its.eventu.model;
+package it.its.eventu.dto;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,20 +10,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @NoArgsConstructor
+@Data
 @AllArgsConstructor
-
-public class User{
+public class CandidaturaDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
-
-    private String nome;
-    private String cognome;
-    private String email;
-    private String password;
+    private Long id;
+    private String UtenteApplicatura;
+    private Boolean StatoCandidatura;
 
 
 }

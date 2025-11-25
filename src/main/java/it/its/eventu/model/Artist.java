@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Artist extends User {
+public class Artist{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
