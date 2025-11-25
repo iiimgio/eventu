@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Artist{
+public class Artist extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +20,11 @@ public class Artist{
 
     private String nomeArtista;
     private String cognomeArtista;
+    private String genereMusicale;
+    private String citta;
+    private Double cachet;
+    private Boolean disponibile;
+    private String fotoProfilo;
+    private String linkSocial;
+    private String linkVideo;
 }
