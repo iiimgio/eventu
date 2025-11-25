@@ -1,7 +1,6 @@
 package it.its.eventu.dto;
 
 import ch.qos.logback.core.model.Model;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
