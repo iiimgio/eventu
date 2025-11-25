@@ -22,4 +22,7 @@ public class CandidaturaDto {
     private Boolean StatoCandidatura;
 
 
+
+    /// diocane
+
 }
