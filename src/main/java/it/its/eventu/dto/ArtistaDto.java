@@ -1,23 +1,28 @@
 package it.its.eventu.dto;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import it.its.eventu.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ArtistaDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private String email;
+    private Role role;
     private String nomeArtista;
     private String cognomeArtista;
+    private String genereMusicale;
+    private String citta;
+    private Double cachet;
+    private Boolean disponibile;
+    private String fotoProfilo;
+    private String linkSocial;
+    private String linkVideo;
 }
+
+
 

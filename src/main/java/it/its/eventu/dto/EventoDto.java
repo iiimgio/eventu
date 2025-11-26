@@ -1,22 +1,20 @@
 package it.its.eventu.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-
-@NoArgsConstructor
 @Data
-@AllArgsConstructor
 public class EventoDto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
-    private String nome;
-    private int DataEvento;
-
+    private Long id;
+    private String titolo;
+    private String descrizione;
+    private String luogo;
+    private String tipoEvento;
+    private Double budget;
+    private LocalDate data;
+    private LocalTime orarioInizio;
+    private LocalTime orarioFine;
+    private Long organizzatoreId;
 }
+

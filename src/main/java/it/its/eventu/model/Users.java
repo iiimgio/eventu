@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class User {
+public abstract class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,3 +25,4 @@ public abstract class User {
     @Enumerated(EnumType.STRING)
     private Role role; // ARTISTA, ORGANIZZATORE
 }
+

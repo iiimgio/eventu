@@ -1,18 +1,20 @@
 package it.its.eventu.dto;
 
-
 import it.its.eventu.enums.TipoOrganizzatore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrganizzatoreDto {
-    private Long id;
-    private String nome;
+   
     private String email;
-    private String città;
+    private TipoOrganizzatore tipo;
     private String descrizione;
+    private String citta;
     private String telefono;
     private String sitoWeb;
-    private TipoOrganizzatore tipo;
 }
 

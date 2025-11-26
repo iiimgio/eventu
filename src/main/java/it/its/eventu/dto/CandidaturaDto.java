@@ -1,24 +1,23 @@
+
 package it.its.eventu.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import it.its.eventu.enums.StatoCandidatura;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
 public class CandidaturaDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-    private String UtenteApplicatura;
-    private Boolean StatoCandidatura;
-
-
-
+    private String utentePresentazione;
+    private LocalDate dataInvio;
+    private StatoCandidatura stato;
+    private Long artistaId;
+    private Long eventoId;
 }
+

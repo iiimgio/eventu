@@ -1,13 +1,12 @@
 package it.its.eventu.model;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import it.its.eventu.enums.StatoCandidatura;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -17,10 +16,19 @@ public class Candidatura {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long id;
 
-    private String UtenteApplicatura;
-    private Boolean StatoCandidatura;
+    private String messaggio;
+    private LocalDate dataInvio;
 
+    @Enumerated(EnumType.STRING)
+    private StatoCandidatura stato;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artista_id", nullable = false)
+    private Artista artista;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "evento_id", nullable = false)
+    private Evento evento;
 }
