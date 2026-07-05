@@ -218,18 +218,20 @@ export const Events = () => {
         {/* Empty state */}
         {!loading && !error && filteredEvents.length === 0 && (
           <div className="text-center py-24 space-y-4">
-            <div className="text-4xl">🎵</div>
-            <p className="text-muted text-base font-medium">
-              {searchQuery || hasActiveFilters
-                ? 'Nessun evento corrisponde ai tuoi filtri.'
-                : 'Nessun evento trovato nel database.'}
-            </p>
-            {hasActiveFilters && (
-              <Button variant="outline" onClick={() => { setSearchQuery(''); setSelectedGenre('Tutti'); setMaxBudget(''); }} className="font-semibold">
-                Rimuovi filtri
-              </Button>
-            )}
-          </div>
+              <div className="mb-4">
+                <img src="/event-festival.png" alt="Nessun evento" className="mx-auto w-32 h-32 object-cover rounded-lg" />
+              </div>
+              <p className="text-muted text-base font-medium">
+                {searchQuery || hasActiveFilters
+                  ? 'Nessun evento corrisponde ai tuoi filtri.'
+                  : 'Nessun evento trovato nel database.'}
+              </p>
+              {hasActiveFilters && (
+                <Button variant="outline" onClick={() => { setSearchQuery(''); setSelectedGenre('Tutti'); setMaxBudget(''); }} className="font-semibold">
+                  Rimuovi filtri
+                </Button>
+              )}
+            </div>
         )}
 
         {/* Grid of Events */}

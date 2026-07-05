@@ -495,7 +495,7 @@ function ArtistDashboard({ userId, displayName }: { userId: number; displayName:
       <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <span className="text-xs font-bold uppercase tracking-wider text-primary mb-2 block">Dashboard Artista</span>
         <h1 className="text-2xl md:text-4xl font-extrabold mb-2 text-foreground">
-          Ciao, <span className="text-primary">{displayName}</span> 🎵
+          Ciao, <span className="text-primary">{displayName}</span>
         </h1>
         <p className="text-muted text-sm font-medium">Trova eventi, candidati e suona sul palco.</p>
       </motion.div>

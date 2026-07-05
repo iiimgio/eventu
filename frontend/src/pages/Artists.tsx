@@ -147,7 +147,9 @@ export const Artists = () => {
         {/* Empty */}
         {!loading && !error && filtered.length === 0 && (
           <div className="text-center py-24 space-y-3">
-            <div className="text-4xl">🎤</div>
+            <div className="mb-4">
+              <img src="/event-hiphop.png" alt="Nessun artista" className="mx-auto w-28 h-28 object-cover rounded-lg" />
+            </div>
             <p className="text-muted text-base font-medium">Nessun artista corrisponde ai filtri.</p>
           </div>
         )}

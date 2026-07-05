@@ -105,7 +105,7 @@ export const Register = () => {
                   {
                     r: 'ARTISTA' as const,
                     icon: Music,
-                    title: '🎤 Sono un Artista',
+                    title: 'Sono un Artista',
                     desc: 'Crea il tuo profilo, carica video, trova eventi e candidati per esibirti.',
                     color: 'border-border hover:border-primary/45 bg-white',
                     iconBg: 'bg-primary-light text-primary border border-primary/10',
@@ -113,7 +113,7 @@ export const Register = () => {
                   {
                     r: 'ORGANIZZATORE' as const,
                     icon: Building2,
-                    title: '🏢 Sono un Organizzatore',
+                    title: 'Sono un Organizzatore',
                     desc: 'Pubblica eventi, cerca artisti per la tua lineup e gestisci tutto da un unico posto.',
                     color: 'border-border hover:border-primary/45 bg-white',
                     iconBg: 'bg-primary-light text-primary border border-primary/10',
@@ -178,7 +178,7 @@ export const Register = () => {
 
                 <div className="border-t border-border pt-4">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-4">
-                    {role === 'ARTISTA' ? '🎵 Dettagli Artista' : '🏢 Dettagli Organizzatore'}
+                    {role === 'ARTISTA' ? 'Dettagli Artista' : 'Dettagli Organizzatore'}
                   </p>
                 </div>
 

@@ -313,7 +313,9 @@ export const Home = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="p-6 rounded-2xl bg-white cursor-pointer transition-all group text-left shadow-sm"
                   >
-                    <div className="text-3xl mb-3">🎤</div>
+                    <div className="mb-3">
+                      <img src="/event-hiphop.png" alt="Artista" className="w-12 h-12 object-cover rounded-lg" />
+                    </div>
                     <h3 className="text-lg font-bold mb-1 text-foreground group-hover:text-primary transition-colors">Sono un Artista</h3>
                     <p className="text-xs text-muted leading-relaxed">Crea profilo, trova eventi, candidati e suona.</p>
                     <div className="mt-4 flex items-center gap-1.5 text-primary text-xs font-semibold">
@@ -326,7 +328,9 @@ export const Home = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="p-6 rounded-2xl bg-white cursor-pointer transition-all group text-left shadow-sm"
                   >
-                    <div className="text-3xl mb-3">🏢</div>
+                    <div className="mb-3">
+                      <img src="/event-house.png" alt="Organizzatore" className="w-12 h-12 object-cover rounded-lg" />
+                    </div>
                     <h3 className="text-lg font-bold mb-1 text-foreground group-hover:text-primary transition-colors">Sono un Organizzatore</h3>
                     <p className="text-xs text-muted leading-relaxed">Pubblica eventi, trova artisti perfetti per te.</p>
                     <div className="mt-4 flex items-center gap-1.5 text-primary text-xs font-semibold">

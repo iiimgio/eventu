@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #1a1a1a;
-  --color-primary: #e8392c;
-  --color-primary-hover: #c72c20;
-  --color-primary-light: rgba(232, 57, 44, 0.08);
-  --color-coral: #e8392c;
-  --color-coral-dark: #c72c20;
-  --color-coral-light: #ff6b5b;
-  --color-secondary: #f0f0f0;
-  --color-muted: #6b6b6b;
-  --color-card: #ffffff;
-  --color-border: #ebebeb;
-  --color-border-hover: #d8d8d8;
-  --color-surface: #f7f7f7;
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-primary: #9135ff;
+  --color-primary-hover: #6f26cc;
+  --color-primary-light: rgba(145, 53, 255, 0.08);
+  --color-purple: #9135ff;
+  --color-purple-dark: #6f26cc;
+  --color-purple-light: #bfa3ff;
+  --color-secondary: #0a0a0a;
+  --color-muted: #bdbdbd;
+  --color-card: #0a0a0a;
+  --color-border: #222222;
+  --color-border-hover: #333333;
+  --color-surface: #070707;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
@@ -75,10 +75,10 @@
 
 /* Fivefoot-inspired utilities */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-nav-light {
@@ -89,7 +89,7 @@
 }
 
 .hero-coral {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
 }
 
 .card-elevated {
@@ -107,14 +107,14 @@
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #e8392c 0%, #c72c20 100%);
+  background: linear-gradient(135deg, #9135ff 0%, #6f26cc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #e8392c 0%, #c72c20 100%);
+  background: linear-gradient(135deg, #9135ff 0%, #6f26cc 100%);
 }
 
 .section-divider {
@@ -129,8 +129,8 @@
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 9999px;
-  background: rgba(232, 57, 44, 0.08);
-  color: #e8392c;
+  background: rgba(145, 53, 255, 0.08);
+  color: #9135ff;
 }
 
 .input-field {
@@ -147,7 +147,7 @@
 .input-field:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(232, 57, 44, 0.1);
+  box-shadow: 0 0 0 3px rgba(145, 53, 255, 0.12);
 }
 
 .input-field::placeholder {
