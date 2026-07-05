@@ -27,7 +27,6 @@ export const Login = () => {
     }
   };
 
-  const inputBase = "w-full h-12 pl-11 pr-4 rounded-xl bg-background/50 border border-border text-foreground placeholder:text-foreground/35 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/40 transition-all text-sm";
 
   return (
     <div className="min-h-screen flex items-center justify-center pt-16 pb-20 px-4 bg-surface">

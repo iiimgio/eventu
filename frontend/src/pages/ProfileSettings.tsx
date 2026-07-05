@@ -166,8 +166,7 @@ export const ProfileSettings = () => {
     }
   };
 
-  const inputClass = "w-full h-11 px-4 rounded-lg bg-background/50 border border-border text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all";
-  const textareaClass = "w-full px-4 py-3 rounded-lg bg-background/50 border border-border text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all resize-none";
+  
 
   if (loading) {
     return (

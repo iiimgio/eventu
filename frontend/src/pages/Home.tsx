@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Music, Calendar, Star, Zap, ChevronDown, Radio, Sparkles, Mic2 } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import { ArrowRight, Music, Calendar, Star, Zap, ChevronDown, Mic2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { seedDatabaseIfEmpty } from '../utils/seeder';
