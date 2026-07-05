@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Music, MapPin, DollarSign, Globe, Video, ArrowLeft, Loader2, AlertCircle, Sparkles, CheckCircle, XCircle, Mail } from 'lucide-react';
+import { Music, MapPin, DollarSign, Globe, Video, ArrowLeft, Loader2, AlertCircle, Sparkles, CheckCircle, Mail } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import type { ArtistaDto } from '../types';
 
