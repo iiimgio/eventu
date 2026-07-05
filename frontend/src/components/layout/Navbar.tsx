@@ -49,7 +49,7 @@ export const Navbar = () => {
   const indicatorClass = isHome ? 'bg-white' : 'bg-primary';
 
   return (
-    <nav className={`fixed top-0 z-50 w-full ${isHome ? 'pt-4' : 'border-b border-border bg-white/90 backdrop-blur-md'}`}>
+    <nav className={`fixed top-0 z-50 w-full ${isHome ? 'pt-4' : 'border-b border-border bg-card/95 backdrop-blur-md shadow-[0_8px_24px_-18px_rgba(0,0,0,0.75)]'}`}>
       <div className={`${isHome ? 'container mx-auto px-4 sm:px-6' : 'container mx-auto px-4 sm:px-6'}`}>
         <div className={`${isHome ? 'glass-nav rounded-full shadow-nav mx-auto max-w-5xl px-4 sm:px-6' : ''}`}>
           <div className="flex h-14 items-center justify-between">
@@ -120,7 +120,7 @@ export const Navbar = () => {
                           initial={{ opacity: 0, y: 10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          className="absolute right-0 mt-2 w-52 rounded-2xl border border-border bg-white p-1.5 shadow-lg"
+                          className="absolute right-0 mt-2 w-52 rounded-2xl border border-border bg-card p-1.5 shadow-lg"
                         >
                           <Link
                             to="/dashboard"
@@ -189,7 +189,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`md:hidden border-t px-4 py-6 overflow-hidden ${isHome ? 'border-white/20 bg-primary' : 'border-border bg-white'}`}
+            className={`md:hidden border-t px-4 py-6 overflow-hidden ${isHome ? 'border-white/20 bg-primary' : 'border-border bg-card/95'}`}
           >
             <div className="flex flex-col gap-4">
               {links.map((link) => (

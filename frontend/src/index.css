@@ -178,6 +178,13 @@
   background-color: var(--color-card) !important;
   color: var(--color-foreground) !important;
 }
+.bg-white\/90,
+.bg-white\/95,
+.bg-white\/80,
+.bg-white\/70,
+.bg-white\/60 {
+  background-color: rgba(18, 18, 26, 0.94) !important;
+}
 .bg-surface {
   background-color: var(--color-surface) !important;
 }
