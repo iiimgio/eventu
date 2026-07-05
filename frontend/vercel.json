@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/artisti", "destination": "https://eventu-backend-dvaq.onrender.com/artisti" },
+    { "source": "/artisti/:path*", "destination": "https://eventu-backend-dvaq.onrender.com/artisti/:path*" },
+    { "source": "/eventi", "destination": "https://eventu-backend-dvaq.onrender.com/eventi" },
+    { "source": "/eventi/:path*", "destination": "https://eventu-backend-dvaq.onrender.com/eventi/:path*" },
+    { "source": "/organizzatori", "destination": "https://eventu-backend-dvaq.onrender.com/organizzatori" },
+    { "source": "/organizzatori/:path*", "destination": "https://eventu-backend-dvaq.onrender.com/organizzatori/:path*" },
+    { "source": "/candidature", "destination": "https://eventu-backend-dvaq.onrender.com/candidature" },
+    { "source": "/candidature/:path*", "destination": "https://eventu-backend-dvaq.onrender.com/candidature/:path*" }
+  ]
+}
