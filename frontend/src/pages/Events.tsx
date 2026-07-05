@@ -33,7 +33,7 @@ export const Events = () => {
         if (!response.ok) throw new Error('Network response was not ok');
         setEvents(await response.json());
       } catch (err) {
-        setError('Impossibile connettersi al server. Assicurati che il backend Spring Boot sia attivo sulla porta 8080.');
+        setError('Impossibile caricare gli eventi dal server. Riprova più tardi.');
       } finally {
         setLoading(false);
       }

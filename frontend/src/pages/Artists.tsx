@@ -22,7 +22,7 @@ export const Artists = () => {
         if (!response.ok) throw new Error('Network response was not ok');
         setArtists(await response.json());
       } catch {
-        setError('Impossibile connettersi al server. Verifica che il backend sia in esecuzione.');
+        setError('Impossibile caricare gli artisti dal server. Riprova più tardi.');
       } finally {
         setLoading(false);
       }
