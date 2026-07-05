@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Music, Calendar, Star, Zap, ChevronDown } from 'lucide-react';
+import { ArrowRight, Music, Calendar, Star, Zap, ChevronDown, Radio, Sparkles, Mic2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -31,6 +31,12 @@ const stats = [
   { value: '50+', label: 'Città Coperte', icon: Zap },
 ];
 
+const features = [
+  { title: 'Velocità', desc: 'Candidati a un evento in pochi secondi.' },
+  { title: 'Semplicità', desc: 'Tutto in un\'unica piattaforma ordinata.' },
+  { title: 'Innovazione', desc: 'Il futuro degli eventi musicali live.' },
+];
+
 export const Home = () => {
   const { user } = useAuth();
 
@@ -39,177 +45,164 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-white">
 
-      {}
-      <section className="relative min-h-screen flex flex-col justify-center items-center pt-28 pb-16 px-4 overflow-hidden">
-        
-        {}
-        <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-primary/15 rounded-full blur-[140px] -z-10"
-          style={{ animation: 'pulseSlow 10s ease-in-out infinite' }} />
-        <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-secondary/15 rounded-full blur-[130px] -z-10"
-          style={{ animation: 'pulseSlow 8s ease-in-out infinite 2s' }} />
-
-        {}
-        <div className="absolute inset-0 -z-10 opacity-[0.06]"
-          style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }} />
-
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-4 relative z-10">
-          
-          {}
+      {/* Hero — Fivefoot style */}
+      <section className="relative min-h-screen flex flex-col justify-center items-center hero-coral pt-24 pb-20 px-4 overflow-hidden">
+        <div className="container mx-auto max-w-5xl text-center relative z-10">
           <motion.div
-            className="lg:col-span-7 space-y-8 text-center lg:text-left"
             variants={stagger}
             initial="initial"
             animate="animate"
+            className="space-y-6"
           >
-            {}
-            <motion.div variants={fadeUp} className="w-fit mx-auto lg:mx-0">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-sm font-semibold text-primary border border-primary/20 shadow-lg shadow-primary/5">
-                <Star className="h-4 w-4 fill-primary text-primary" />
-                La piattaforma #1 per eventi musicali in Italia
-              </span>
+            <motion.div variants={fadeUp} className="flex justify-center">
+              <div className="relative inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 backdrop-blur-md shadow-lg">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white">
+                  <Mic2 className="h-5 w-5" />
+                </div>
+                <div className="ml-3 text-left">
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/70">Nuovo sound</p>
+                  <p className="text-sm font-semibold text-white">Speaker creativo per artisti e eventi</p>
+                </div>
+              </div>
             </motion.div>
 
-            {}
             <motion.h1
               variants={fadeUp}
-              className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.05]"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-none text-white lowercase"
             >
-              Vivi la{' '}
-              <span className="relative inline-block">
-                <span className="text-gradient">Musica</span>
-                <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-full" />
-              </span>
-              <br />
-              come mai prima.
+              event.u
             </motion.h1>
 
-            {}
             <motion.p
               variants={fadeUp}
-              className="text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
+              className="text-lg sm:text-xl text-white/80 max-w-xl mx-auto leading-relaxed font-normal"
             >
-              Event.u connette artisti eccezionali — rapper, DJ house, beatmaker — con i migliori organizzatori di eventi live. Candidati, crea, esibisciti.
+              il futuro della musica live è ora.
             </motion.p>
 
-            {}
-            <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-4 pt-4">
               {user ? (
                 <Link to="/dashboard">
-                  <Button size="lg" className="gap-2 shadow-2xl shadow-primary/30">
+                  <button className="btn-pill-white h-12 px-8 text-base gap-2 inline-flex items-center font-semibold">
                     La mia Dashboard <ArrowRight className="h-5 w-5" />
-                  </Button>
+                  </button>
                 </Link>
               ) : (
                 <>
                   <Link to="/register">
-                    <Button size="lg" className="gap-2 shadow-2xl shadow-primary/30">
+                    <button className="btn-pill-white h-12 px-8 text-base gap-2 inline-flex items-center font-semibold">
                       Inizia Gratis <ArrowRight className="h-5 w-5" />
-                    </Button>
+                    </button>
                   </Link>
                   <Link to="/events">
-                    <Button size="lg" variant="outline" className="gap-2 backdrop-blur-sm">
+                    <button className="h-12 px-8 text-base gap-2 inline-flex items-center font-semibold rounded-full border border-white/30 text-white hover:bg-white/10 transition-all">
                       Esplora gli Eventi
-                    </Button>
+                    </button>
                   </Link>
                 </>
               )}
             </motion.div>
           </motion.div>
-
-          {}
-          <motion.div
-            className="lg:col-span-5 flex justify-center"
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          >
-            <div className="relative group w-full max-w-[450px]">
-              {}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-              
-              <div className="relative rounded-3xl overflow-hidden border border-white/10 glass-panel shadow-2xl aspect-[4/5] md:aspect-[3/4]">
-                <img
-                  src="/hero-concert.png"
-                  alt="Concert Experience"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                
-                {}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent flex flex-col justify-end p-6">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-bold tracking-widest text-primary uppercase">Milano Live Stage</span>
-                    <h3 className="text-xl font-bold text-white">Hip Hop & American Rap Fest</h3>
-                    <p className="text-xs text-white/60">Trova date e candidati come artista ospite.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
         </div>
 
-        {}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-foreground/30 text-xs cursor-pointer hover:text-foreground/50 transition-colors"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/60 text-xs cursor-pointer hover:text-white transition-colors font-medium"
           onClick={() => window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' })}
         >
-          <span>Scopri di più</span>
+          <span>Scroll</span>
           <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+            animate={{ y: [0, 4, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           >
             <ChevronDown className="h-4.5 w-4.5" />
           </motion.div>
         </motion.div>
       </section>
 
-      {}
-      <section className="py-16 border-y border-border relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/3 via-transparent to-secondary/3 -z-10" />
+      {/* Features pills — Fivefoot style */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map(({ value, label, icon: Icon }, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {features.map(({ title, desc }, i) => (
               <motion.div
-                key={label}
+                key={title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center space-y-2"
+                className="text-center space-y-3"
               >
-                <div className="h-12 w-12 mx-auto rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center text-primary">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <div className="text-3xl font-black text-gradient">{value}</div>
-                <div className="text-sm text-foreground/50">{label}</div>
+                <h3 className="text-2xl font-extrabold text-foreground">{title}</h3>
+                <p className="text-muted text-sm leading-relaxed">{desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {}
-      <section className="py-24 container mx-auto px-4">
+      {/* Stats Bar */}
+      <section className="py-16 border-y border-border bg-surface relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map(({ value, label, icon: Icon }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="text-center space-y-3"
+              >
+                <div className="h-10 w-10 mx-auto rounded-xl bg-primary-light border border-primary/10 flex items-center justify-center text-primary">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="text-3xl font-extrabold text-foreground">{value}</div>
+                <div className="text-sm font-medium text-muted">{label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight">
+              Tutto sotto controllo,<br />
+              <span className="text-primary">niente più caos.</span>
+            </h2>
+            <p className="text-muted text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Event.u connette artisti eccezionali — rapper, DJ house, beatmaker — con i migliori organizzatori di eventi live. Candidati, crea, esibisciti.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Genres Grid */}
+      <section className="py-24 container mx-auto px-4 bg-surface">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14 space-y-4"
+          className="text-center mb-14 space-y-3"
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-primary">Tutti i generi</span>
-          <h2 className="text-4xl md:text-5xl font-black">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary">Tutti i generi</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
             Il tuo sound. La tua scena.
           </h2>
-          <p className="text-foreground/55 max-w-xl mx-auto text-lg">
+          <p className="text-muted max-w-xl mx-auto text-base">
             Da Travis Scott al techno berlinese, ogni genere trova il suo palco su Event.u.
           </p>
         </motion.div>
@@ -218,31 +211,28 @@ export const Home = () => {
           {genres.map((genre, i) => (
             <motion.div
               key={genre.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.07 }}
-              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ delay: i * 0.05 }}
+              whileHover={{ y: -4 }}
             >
               <Link
                 to="/events"
-                className="relative block h-40 rounded-2xl overflow-hidden border border-border group transition-all duration-300"
+                className="relative block h-44 rounded-2xl overflow-hidden border border-border group transition-all duration-300 shadow-sm hover:shadow-card-hover bg-white"
               >
-                {}
                 <img
                   src={genre.image}
                   alt={genre.name}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/25" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
-                {}
                 <div className="absolute inset-0 p-5 flex flex-col justify-end">
                   <h3 className="font-bold text-lg text-white group-hover:text-primary transition-colors">
                     {genre.name}
                   </h3>
-                  <p className="text-xs text-white/60 mt-0.5 group-hover:text-white transition-colors">
+                  <p className="text-xs text-white/70 mt-0.5 group-hover:text-white transition-colors">
                     Esplora gli eventi →
                   </p>
                 </div>
@@ -252,17 +242,17 @@ export const Home = () => {
         </div>
       </section>
 
-      {}
-      <section className="py-24 border-y border-border bg-card/30">
+      {/* How it Works */}
+      <section className="py-24 border-y border-border bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16 space-y-4"
+            className="text-center mb-16 space-y-3"
           >
-            <span className="text-xs font-bold uppercase tracking-widest text-secondary">Come funziona</span>
-            <h2 className="text-4xl md:text-5xl font-black">Semplice. Potente. Diretto.</h2>
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">Come funziona</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Semplice. Potente. Diretto.</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -271,87 +261,77 @@ export const Home = () => {
                 step: '01',
                 title: 'Crea il tuo profilo',
                 desc: 'Registrati come artista o organizzatore in pochi minuti. Aggiungi la tua bio, genere musicale, video e social.',
-                color: 'text-primary border-primary/20 bg-primary/5',
               },
               {
                 step: '02',
                 title: 'Scopri o Pubblica',
                 desc: 'Gli artisti trovano eventi perfetti per loro. Gli organizzatori creano eventi e specificano il tipo di artista cercato.',
-                color: 'text-secondary border-secondary/20 bg-secondary/5',
               },
               {
                 step: '03',
                 title: 'Candidati & Esibisciti',
                 desc: 'Gli artisti si candidano con un messaggio personalizzato. Gli organizzatori accettano o rifiutano in un click.',
-                color: 'text-accent border-accent/20 bg-accent/5',
               },
-            ].map(({ step, title, desc, color }, i) => (
+            ].map(({ step, title, desc }, i) => (
               <motion.div
                 key={step}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="relative text-center space-y-4"
+                transition={{ delay: i * 0.1 }}
+                className="relative text-center space-y-4 p-6 rounded-2xl bg-surface border border-border"
               >
-                <div className={`w-16 h-16 mx-auto rounded-2xl border flex items-center justify-center text-2xl font-black ${color}`}>
+                <div className="w-14 h-14 mx-auto rounded-xl border border-primary/10 bg-primary-light flex items-center justify-center text-xl font-bold text-primary">
                   {step}
                 </div>
-                {i < 2 && (
-                  <div className="hidden md:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-border to-transparent" />
-                )}
-                <h3 className="text-xl font-bold">{title}</h3>
-                <p className="text-foreground/55 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-lg font-bold text-foreground">{title}</h3>
+                <p className="text-muted text-sm leading-relaxed">{desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {}
+      {/* CTA Box (Only guests) */}
       {!user && (
-        <section className="py-24 container mx-auto px-4">
+        <section className="py-24 container mx-auto px-4 bg-surface">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden border border-border"
+            className="relative rounded-3xl overflow-hidden hero-coral shadow-hero"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10 -z-10" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-
-            <div className="p-10 md:p-16 text-center space-y-8">
-              <h2 className="text-4xl md:text-6xl font-black leading-tight">
-                Pronto a salire{' '}
-                <span className="text-gradient">sul palco?</span>
+            <div className="p-8 md:p-16 text-center space-y-8">
+              <h2 className="text-3xl md:text-5xl font-extrabold leading-tight text-white">
+                Pronto a salire sul palco?
               </h2>
-              <p className="text-foreground/55 text-lg max-w-xl mx-auto">
+              <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto">
                 Unisciti a centinaia di artisti e organizzatori che stanno già costruendo la scena musicale italiana.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                 <Link to="/register">
                   <motion.div
-                    whileHover={{ scale: 1.02, y: -3 }}
-                    className="p-7 rounded-2xl glass-panel border border-primary/20 hover:border-primary/50 cursor-pointer transition-all group text-left"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="p-6 rounded-2xl bg-white cursor-pointer transition-all group text-left shadow-sm"
                   >
                     <div className="text-3xl mb-3">🎤</div>
-                    <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">Sono un Artista</h3>
-                    <p className="text-sm text-foreground/50">Crea profilo, trova eventi, candidati e suona.</p>
-                    <div className="mt-4 flex items-center gap-1.5 text-primary text-sm font-semibold">
-                      Inizia gratis <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="text-lg font-bold mb-1 text-foreground group-hover:text-primary transition-colors">Sono un Artista</h3>
+                    <p className="text-xs text-muted leading-relaxed">Crea profilo, trova eventi, candidati e suona.</p>
+                    <div className="mt-4 flex items-center gap-1.5 text-primary text-xs font-semibold">
+                      Inizia gratis <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </motion.div>
                 </Link>
                 <Link to="/register">
                   <motion.div
-                    whileHover={{ scale: 1.02, y: -3 }}
-                    className="p-7 rounded-2xl glass-panel border border-secondary/20 hover:border-secondary/50 cursor-pointer transition-all group text-left"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="p-6 rounded-2xl bg-white cursor-pointer transition-all group text-left shadow-sm"
                   >
                     <div className="text-3xl mb-3">🏢</div>
-                    <h3 className="text-xl font-bold mb-1 group-hover:text-secondary transition-colors">Sono un Organizzatore</h3>
-                    <p className="text-sm text-foreground/50">Pubblica eventi, trova artisti perfetti per te.</p>
-                    <div className="mt-4 flex items-center gap-1.5 text-secondary text-sm font-semibold">
-                      Crea evento <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="text-lg font-bold mb-1 text-foreground group-hover:text-primary transition-colors">Sono un Organizzatore</h3>
+                    <p className="text-xs text-muted leading-relaxed">Pubblica eventi, trova artisti perfetti per te.</p>
+                    <div className="mt-4 flex items-center gap-1.5 text-primary text-xs font-semibold">
+                      Crea evento <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </motion.div>
                 </Link>

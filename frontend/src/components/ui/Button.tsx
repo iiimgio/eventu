@@ -1,7 +1,7 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
 
-type Variant = 'primary' | 'secondary' | 'outline' | 'ghost';
+type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'white';
 type Size = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,19 +12,21 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-gradient-to-r from-primary to-accent text-white border-transparent shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:brightness-110 active:brightness-95',
+    'bg-primary hover:bg-primary-hover text-white border-transparent shadow-sm transition-colors',
   secondary:
-    'bg-gradient-to-r from-secondary to-accent text-white border-transparent shadow-lg shadow-secondary/20 hover:shadow-secondary/40 hover:brightness-110 active:brightness-95',
+    'bg-secondary hover:bg-border/60 text-foreground border-transparent transition-colors',
   outline:
-    'bg-transparent text-foreground border-border hover:border-primary/50 hover:text-primary hover:bg-primary/5',
+    'bg-white text-foreground border-border hover:border-border-hover hover:bg-surface transition-colors',
   ghost:
-    'bg-transparent text-foreground/80 border-transparent hover:bg-white/5 hover:text-foreground',
+    'bg-transparent text-foreground/80 border-transparent hover:bg-surface hover:text-foreground transition-colors',
+  white:
+    'bg-white text-primary hover:bg-surface border-transparent shadow-sm transition-colors',
 };
 
 const sizeClasses: Record<Size, string> = {
-  sm: 'h-8 px-3.5 text-xs rounded-lg gap-1.5',
-  md: 'h-10 px-5 text-sm rounded-xl gap-2',
-  lg: 'h-12 px-7 text-base rounded-xl gap-2.5',
+  sm: 'h-8 px-3.5 text-xs rounded-full gap-1.5',
+  md: 'h-10 px-5 text-sm rounded-full gap-2',
+  lg: 'h-12 px-7 text-base rounded-full gap-2.5',
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

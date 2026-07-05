@@ -68,28 +68,24 @@ export const Events = () => {
   const hasActiveFilters = selectedGenre !== 'Tutti' || !!maxBudget;
 
   return (
-    <div className="pt-24 pb-20 min-h-screen relative overflow-hidden">
-      {}
-      <div className="absolute top-32 left-0 w-[400px] h-[400px] bg-primary/6 rounded-full blur-[120px] -z-10 pointer-events-none" />
-      <div className="absolute top-64 right-0 w-[350px] h-[350px] bg-secondary/6 rounded-full blur-[100px] -z-10 pointer-events-none" />
-
+    <div className="pt-24 pb-20 min-h-screen bg-white">
       <div className="container mx-auto px-4">
-        {}
+        {/* Title */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-10 space-y-4"
+          className="mb-10 space-y-3"
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-primary">Live & Upcoming</span>
-          <h1 className="text-5xl md:text-6xl font-black tracking-tight">
-            Esplora gli <span className="text-gradient">Eventi</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-primary">Live & Upcoming</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground font-sans">
+            Esplora gli <span className="text-primary">Eventi</span>
           </h1>
-          <p className="text-foreground/55 text-lg max-w-xl">
+          <p className="text-muted text-base max-w-xl">
             Hip Hop, Rap americano, House music e molto altro — trova il tuo prossimo show.
           </p>
         </motion.div>
 
-        {}
+        {/* Search & Filters */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,16 +94,16 @@ export const Events = () => {
         >
           <div className="flex gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-foreground/40" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted/60" />
               <input
                 type="text"
                 placeholder="Cerca per nome, luogo, artista cercato..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full h-13 pl-12 pr-4 rounded-2xl glass-panel text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all"
+                className="w-full h-12 pl-12 pr-4 rounded-xl border border-border bg-white text-foreground placeholder:text-muted/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground">
+                <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted hover:text-foreground">
                   <X className="h-4 w-4" />
                 </button>
               )}
@@ -115,17 +111,16 @@ export const Events = () => {
             <Button
               variant={showFilters || hasActiveFilters ? 'secondary' : 'outline'}
               onClick={() => setShowFilters(!showFilters)}
-              className="gap-2 shrink-0"
+              className="gap-2 shrink-0 font-semibold"
             >
               <Filter className="h-4 w-4" />
               Filtri
               {hasActiveFilters && (
-                <span className="h-2 w-2 rounded-full bg-white" />
+                <span className="h-2 w-2 rounded-full bg-primary" />
               )}
             </Button>
           </div>
 
-          {}
           <AnimatePresence>
             {showFilters && (
               <motion.div
@@ -134,19 +129,19 @@ export const Events = () => {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <div className="glass-panel rounded-2xl p-5 space-y-5">
-                  {}
+                <div className="border border-border bg-surface rounded-xl p-5 space-y-5 shadow-sm">
+                  {/* Genre Chips */}
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-foreground/40 mb-3">Genere / Tipo Evento</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">Genere / Tipo Evento</p>
                     <div className="flex flex-wrap gap-2">
                       {GENRES.map(g => (
                         <button
                           key={g}
                           onClick={() => setSelectedGenre(g)}
-                          className={`px-3.5 py-1.5 rounded-full text-sm font-semibold border transition-all ${
+                          className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                             selectedGenre === g
-                              ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25'
-                              : 'bg-transparent text-foreground/60 border-border hover:border-primary/40 hover:text-primary'
+                              ? 'bg-primary text-white border-primary shadow-sm'
+                              : 'bg-white text-foreground/80 border-border hover:border-primary/45 hover:text-primary'
                           }`}
                         >
                           {g}
@@ -154,19 +149,19 @@ export const Events = () => {
                       ))}
                     </div>
                   </div>
-                  {}
+                  {/* Budget input */}
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
-                      <p className="text-xs font-bold uppercase tracking-wider text-foreground/40 mb-3">Budget massimo (€)</p>
+                      <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">Budget massimo (€)</p>
                       <div className="relative max-w-xs">
-                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/40" />
+                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted/65" />
                         <input
                           type="number"
                           min="0"
                           value={maxBudget}
                           onChange={e => setMaxBudget(e.target.value)}
                           placeholder="Nessun limite"
-                          className="w-full h-10 pl-9 pr-3 rounded-xl bg-background/50 border border-border text-foreground placeholder:text-foreground/30 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                          className="w-full h-10 pl-9 pr-3 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
                         />
                       </div>
                     </div>
@@ -176,7 +171,7 @@ export const Events = () => {
                           variant="ghost"
                           size="sm"
                           onClick={() => { setSelectedGenre('Tutti'); setMaxBudget(''); }}
-                          className="text-foreground/50 hover:text-red-400 gap-1.5"
+                          className="text-muted hover:text-primary gap-1.5 font-semibold"
                         >
                           <X className="h-3.5 w-3.5" /> Pulisci filtri
                         </Button>
@@ -189,55 +184,55 @@ export const Events = () => {
           </AnimatePresence>
         </motion.div>
 
-        {}
+        {/* Counter */}
         {!loading && !error && (
-          <p className="text-sm text-foreground/40 mb-6">
+          <p className="text-xs font-semibold text-muted mb-6 uppercase tracking-wider">
             {filteredEvents.length} evento{filteredEvents.length !== 1 ? 'i' : ''} trovato{filteredEvents.length !== 1 ? 'i' : ''}
             {searchQuery && ` per "${searchQuery}"`}
           </p>
         )}
 
-        {}
+        {/* Loading state */}
         {loading && (
-          <div className="flex flex-col items-center justify-center py-28 text-foreground/40">
-            <Loader2 className="h-12 w-12 animate-spin mb-4 text-primary" />
-            <p className="text-sm">Caricamento eventi dal server...</p>
+          <div className="flex flex-col items-center justify-center py-28 text-muted">
+            <Loader2 className="h-10 w-10 animate-spin mb-4 text-primary" />
+            <p className="text-sm font-medium">Caricamento eventi dal server...</p>
           </div>
         )}
 
-        {}
+        {/* Error state */}
         {error && !loading && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             className="flex flex-col items-center justify-center py-24 text-center space-y-4"
           >
-            <div className="h-16 w-16 rounded-2xl bg-red-500/10 flex items-center justify-center border border-red-500/20">
-              <AlertCircle className="h-8 w-8 text-red-400" />
+            <div className="h-14 w-14 rounded-xl bg-red-50 flex items-center justify-center border border-red-100">
+              <AlertCircle className="h-7 w-7 text-red-500" />
             </div>
-            <h3 className="text-xl font-bold text-red-400">Errore di Connessione</h3>
-            <p className="text-foreground/60 max-w-md text-sm">{error}</p>
+            <h3 className="text-xl font-bold text-red-600">Errore di Connessione</h3>
+            <p className="text-muted max-w-md text-sm">{error}</p>
           </motion.div>
         )}
 
-        {}
+        {/* Empty state */}
         {!loading && !error && filteredEvents.length === 0 && (
           <div className="text-center py-24 space-y-4">
-            <div className="text-5xl">🎵</div>
-            <p className="text-foreground/50 text-lg">
+            <div className="text-4xl">🎵</div>
+            <p className="text-muted text-base font-medium">
               {searchQuery || hasActiveFilters
                 ? 'Nessun evento corrisponde ai tuoi filtri.'
                 : 'Nessun evento trovato nel database.'}
             </p>
             {hasActiveFilters && (
-              <Button variant="outline" onClick={() => { setSearchQuery(''); setSelectedGenre('Tutti'); setMaxBudget(''); }}>
+              <Button variant="outline" onClick={() => { setSearchQuery(''); setSelectedGenre('Tutti'); setMaxBudget(''); }} className="font-semibold">
                 Rimuovi filtri
               </Button>
             )}
           </div>
         )}
 
-        {}
+        {/* Grid of Events */}
         {!loading && !error && filteredEvents.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredEvents.map((event, i) => {
@@ -247,58 +242,58 @@ export const Events = () => {
               return (
                 <motion.div
                   key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: Math.min(i * 0.07, 0.5) }}
-                  whileHover={{ y: -6 }}
-                  className="group rounded-2xl overflow-hidden glass-panel border border-border hover:border-primary/30 transition-all duration-300 flex flex-col hover:shadow-xl hover:shadow-primary/10"
+                  transition={{ delay: Math.min(i * 0.05, 0.4) }}
+                  whileHover={{ y: -4 }}
+                  className="group rounded-2xl overflow-hidden border border-border bg-white transition-all duration-300 flex flex-col shadow-sm hover:shadow-card-hover"
                 >
-                  {}
-                  <div className="relative h-48 w-full overflow-hidden">
+                  {/* Photo Container */}
+                  <div className="relative h-48 w-full overflow-hidden bg-secondary">
                     <img
                       src={mainPhoto}
                       alt={event.titolo}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     {hasPhotos && photos.length > 1 && (
-                      <span className="absolute bottom-2 right-2 text-xs font-medium px-2 py-0.5 bg-black/60 backdrop-blur-sm rounded-full text-white">
+                      <span className="absolute bottom-2.5 right-2.5 text-[10px] font-bold px-2 py-0.5 bg-black/60 backdrop-blur-sm rounded text-white uppercase tracking-wider">
                         +{photos.length - 1} foto
                       </span>
                     )}
                     {event.tipoEvento && (
-                      <span className="absolute top-3 left-3 z-10 text-xs font-bold px-2.5 py-1 glass-panel rounded-full border border-border text-foreground/80">
+                      <span className="absolute top-3 left-3 z-10 text-[10px] font-bold px-2.5 py-1 bg-white/95 rounded-full border border-border text-foreground/80 shadow-sm uppercase tracking-wider">
                         {event.tipoEvento}
                       </span>
                     )}
                     {event.budget && (
-                      <span className="absolute top-3 right-3 z-10 text-xs font-bold px-2.5 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-white">
+                      <span className="absolute top-3 right-3 z-10 text-[11px] font-bold px-2.5 py-1 bg-primary text-white rounded-full shadow-sm">
                         €{event.budget}
                       </span>
                     )}
                   </div>
 
-                  {}
+                  {/* Body Content */}
                   <div className="p-5 flex-1 flex flex-col gap-3">
-                    <h3 className="text-lg font-bold line-clamp-1 group-hover:text-primary transition-colors">
+                    <h3 className="text-lg font-bold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
                       {event.titolo}
                     </h3>
-                    <p className="text-sm text-foreground/55 line-clamp-2 flex-1">
+                    <p className="text-sm text-muted line-clamp-2 flex-1">
                       {event.descrizione || 'Nessuna descrizione disponibile.'}
                     </p>
 
-                    <div className="space-y-1.5 text-xs text-foreground/60 pt-1">
+                    <div className="space-y-1.5 text-xs text-muted font-medium pt-1">
                       <div className="flex items-center gap-2">
                         <CalendarDays className="h-3.5 w-3.5 text-primary shrink-0" />
                         <span>{event.data} • {event.orarioInizio?.slice(0, 5)}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-3.5 w-3.5 text-secondary shrink-0" />
+                        <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
                         <a
                           href={getMapsLinkUrl(event.luogo)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-secondary transition-colors truncate"
+                          className="hover:text-primary hover:underline transition-all truncate"
                           onClick={e => e.stopPropagation()}
                         >
                           {event.luogo}
@@ -310,7 +305,7 @@ export const Events = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full gap-1.5 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all"
+                        className="w-full gap-1.5 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all font-semibold"
                       >
                         Vedi Dettagli <ArrowRight className="h-3.5 w-3.5" />
                       </Button>

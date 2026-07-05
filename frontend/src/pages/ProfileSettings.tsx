@@ -178,158 +178,151 @@ export const ProfileSettings = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4 container mx-auto max-w-2xl relative">
-      {}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-primary/10 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[350px] h-[350px] bg-secondary/15 rounded-full blur-[120px] -z-10" />
-
+    <div className="min-h-screen bg-white pt-24 pb-20 px-4 container mx-auto max-w-2xl">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-panel rounded-2xl p-6 md:p-8"
+        className="border border-border bg-white rounded-2xl p-6 md:p-8 shadow-sm"
       >
         <div className="flex items-center gap-3 mb-6">
-          <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-            <User className="h-6 w-6" />
+          <div className="h-12 w-12 rounded-xl bg-primary-light flex items-center justify-center text-primary border border-primary/10 shadow-sm shrink-0">
+            <User className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Impostazioni Profilo</h1>
-            <p className="text-foreground/60 text-sm">Aggiorna le tue informazioni personali e di visibilità.</p>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-foreground">Impostazioni Profilo</h1>
+            <p className="text-muted text-sm font-medium">Aggiorna le tue informazioni personali e di visibilità.</p>
           </div>
         </div>
 
-        {}
         {success && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm mb-6"
+            className="flex items-center gap-3 p-4 rounded-xl bg-green-50 border border-green-100 text-green-605 text-sm mb-6"
           >
-            <CheckCircle2 className="h-5 w-5 shrink-0" />
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-green-605" />
             <div>
-              <span className="font-semibold">Profilo aggiornato!</span> Le modifiche sono state salvate correttamente nel database.
+              <span className="font-bold">Profilo aggiornato!</span> Le modifiche sono state salvate correttamente nel database.
             </div>
           </motion.div>
         )}
 
         {error && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm mb-6"
+            className="flex items-center gap-3 p-4 rounded-xl bg-red-50 border border-red-100 text-red-650 text-sm mb-6"
           >
-            <AlertCircle className="h-5 w-5 shrink-0" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-red-655" />
             <span>{error}</span>
           </motion.div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground/50 uppercase tracking-wider flex items-center gap-1.5">
-              <Shield className="h-4 w-4" /> Informazioni Personali
+            <h3 className="text-xs font-bold text-muted uppercase tracking-wider flex items-center gap-1.5 border-b border-border pb-2">
+              <Shield className="h-4 w-4 text-primary" /> Informazioni Personali
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1">Nome *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Nome *</label>
                 <input
                   type="text"
                   required
                   value={nome}
                   onChange={e => setNome(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1">Cognome *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Cognome *</label>
                 <input
                   type="text"
                   required
                   value={cognome}
                   onChange={e => setCognome(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground/80 mb-1">Email *</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Email *</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/30" />
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted/50" />
                 <input
                   type="email"
                   required
                   value={email}
                   disabled 
-                  className="w-full h-11 pl-10 pr-4 rounded-lg bg-background/30 border border-border text-foreground/50 cursor-not-allowed text-sm"
+                  className="w-full h-11 pl-10 pr-4 rounded-lg bg-surface border border-border text-muted/60 cursor-not-allowed text-sm font-semibold"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground/80 mb-1">Modifica Password</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Modifica Password</label>
               <input
                 type="password"
                 placeholder="Lascia vuoto per non cambiarla"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                className={inputClass}
+                className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
               />
             </div>
           </div>
 
-          {}
           {user?.role === 'ARTISTA' && (
             <div className="border-t border-border pt-6 space-y-4">
-              <h3 className="text-sm font-semibold text-primary uppercase tracking-wider flex items-center gap-1.5">
-                <Sparkles className="h-4 w-4" /> Profilo Artista
+              <h3 className="text-xs font-bold text-muted uppercase tracking-wider flex items-center gap-1.5 border-b border-border pb-2">
+                <Sparkles className="h-4 w-4 text-primary" /> Profilo Artista
               </h3>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1">Nome d'Arte *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Nome d'Arte *</label>
                 <input
                   type="text"
                   required
                   value={nomeArtista}
                   onChange={e => setNomeArtista(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground/80 mb-1">Genere Musicale</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Genere Musicale</label>
                   <input
                     type="text"
                     value={genereMusicale}
                     onChange={e => setGenereMusicale(e.target.value)}
                     placeholder="Hip Hop, Rap, House, Rock..."
-                    className={inputClass}
+                    className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground/80 mb-1">Città</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Città</label>
                   <input
                     type="text"
                     value={citta}
                     onChange={e => setCitta(e.target.value)}
-                    className={inputClass}
+                    className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground/80 mb-1">Cachet Richiesto (€)</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Cachet Richiesto (€)</label>
                   <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/40" />
+                    <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted/65" />
                     <input
                       type="number"
                       min="0"
                       value={cachet}
                       onChange={e => setCachet(e.target.value)}
-                      className="w-full h-11 pl-10 pr-4 rounded-lg bg-background/50 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+                      className="w-full h-11 pl-10 pr-4 rounded-lg border border-border bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm"
                     />
                   </div>
                 </div>
@@ -342,8 +335,8 @@ export const ProfileSettings = () => {
                       onChange={e => setDisponibile(e.target.checked)}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-background border border-border rounded-full peer peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-foreground/50 after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500/20 peer-checked:border-green-500/50 peer-checked:after:bg-green-400 relative"></div>
-                    <span className="text-sm font-medium text-foreground/80">
+                    <div className="w-11 h-6 bg-secondary border border-border rounded-full peer peer-focus:ring-2 peer-focus:ring-primary/20 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-muted/80 after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500/20 peer-checked:border-green-500 peer-checked:after:bg-green-600 relative"></div>
+                    <span className="text-sm font-semibold text-foreground/80">
                       Disponibile per Eventi
                     </span>
                   </label>
@@ -351,59 +344,58 @@ export const ProfileSettings = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1 flex items-center gap-1.5">
-                  <Camera className="h-4 w-4 text-foreground/50" /> URL Foto Profilo
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5 flex items-center gap-1.5">
+                  <Camera className="h-4 w-4 text-primary" /> URL Foto Profilo
                 </label>
                 <input
                   type="url"
                   value={fotoProfilo}
                   onChange={e => setFotoProfilo(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   placeholder="https://..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1 flex items-center gap-1.5">
-                  <LinkIcon className="h-4 w-4 text-foreground/50" /> URL Social Link
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5 flex items-center gap-1.5">
+                  <LinkIcon className="h-4 w-4 text-primary" /> URL Social Link
                 </label>
                 <input
                   type="url"
                   value={linkSocial}
                   onChange={e => setLinkSocial(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   placeholder="https://instagram.com/..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1 flex items-center gap-1.5">
-                  <Video className="h-4 w-4 text-foreground/50" /> URL Video Youtube/SoundCloud
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5 flex items-center gap-1.5">
+                  <Video className="h-4 w-4 text-primary" /> URL Video Youtube
                 </label>
                 <input
                   type="url"
                   value={linkVideo}
                   onChange={e => setLinkVideo(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   placeholder="https://youtube.com/watch?v=..."
                 />
               </div>
             </div>
           )}
 
-          {/* Sezione Specifica per Organizzatore */}
           {user?.role === 'ORGANIZZATORE' && (
             <div className="border-t border-border pt-6 space-y-4">
-              <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider flex items-center gap-1.5">
-                <Globe className="h-4 w-4" /> Informazioni Organizzatore
+              <h3 className="text-xs font-bold text-muted uppercase tracking-wider flex items-center gap-1.5 border-b border-border pb-2">
+                <Globe className="h-4 w-4 text-primary" /> Informazioni Organizzatore
               </h3>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1">Tipologia di Organizzatore *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Tipologia di Organizzatore *</label>
                 <select
                   value={tipo}
                   onChange={e => setTipo(e.target.value as any)}
-                  className={inputClass}
+                  className="w-full h-11 px-3.5 rounded-lg border border-border bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all"
                 >
                   <option value="PERSONA_FISICA">Persona Fisica</option>
                   <option value="AZIENDA">Azienda / Società</option>
@@ -412,50 +404,50 @@ export const ProfileSettings = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1">Descrizione</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Descrizione</label>
                 <textarea
                   rows={4}
                   value={descrizione}
                   onChange={e => setDescrizione(e.target.value)}
-                  className={textareaClass}
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm resize-none"
                   placeholder="Descrivi chi sei, la tipologia di eventi che organizzi..."
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground/80 mb-1 flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4 text-foreground/50" /> Città Sede
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5 flex items-center gap-1.5">
+                    <MapPin className="h-4 w-4 text-primary" /> Città Sede
                   </label>
                   <input
                     type="text"
                     value={cittaOrg}
                     onChange={e => setCittaOrg(e.target.value)}
-                    className={inputClass}
+                    className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground/80 mb-1 flex items-center gap-1.5">
-                    <Phone className="h-4 w-4 text-foreground/50" /> Telefono Contatto
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5 flex items-center gap-1.5">
+                    <Phone className="h-4 w-4 text-primary" /> Telefono Contatto
                   </label>
                   <input
                     type="tel"
                     value={telefono}
                     onChange={e => setTelefono(e.target.value)}
-                    className={inputClass}
+                    className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground/80 mb-1 flex items-center gap-1.5">
-                  <Globe className="h-4 w-4 text-foreground/50" /> Sito Web / Portfolio
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5 flex items-center gap-1.5">
+                  <Globe className="h-4 w-4 text-primary" /> Sito Web / Portfolio
                 </label>
                 <input
                   type="url"
                   value={sitoWeb}
                   onChange={e => setSitoWeb(e.target.value)}
-                  className={inputClass}
+                  className="w-full h-11 px-4 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   placeholder="https://..."
                 />
               </div>
@@ -466,9 +458,9 @@ export const ProfileSettings = () => {
             type="submit"
             isLoading={saving}
             disabled={saving}
-            className="w-full h-11 gap-2 mt-4"
+            className="w-full h-11 gap-2 mt-4 font-semibold shadow-sm"
             size="lg"
-            variant={user?.role === 'ARTISTA' ? 'primary' : 'secondary'}
+            variant="primary"
           >
             <FileText className="h-4 w-4" /> Salva Modifiche
           </Button>

@@ -157,55 +157,51 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
     if (selectedEvent) viewCandidature(selectedEvent);
   };
 
-  const inputClass = "w-full h-10 px-3 rounded-xl bg-background/50 border border-border text-foreground placeholder:text-foreground/35 focus:outline-none focus:ring-2 focus:ring-primary/40 text-sm transition-all";
+  const inputClass = "w-full h-10 px-3 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all";
 
   const statoColors: Record<string, string> = {
-    IN_ATTESA: 'text-yellow-400 bg-yellow-500/10 border border-yellow-500/20',
-    ACCETTATA: 'text-green-400 bg-green-500/10 border border-green-500/20',
-    RIFIUTATA: 'text-red-400 bg-red-500/10 border border-red-500/20',
+    IN_ATTESA: 'text-yellow-600 bg-yellow-50 border border-yellow-100',
+    ACCETTATA: 'text-green-600 bg-green-50 border border-green-100',
+    RIFIUTATA: 'text-red-650 bg-red-50 border border-red-100',
   };
 
   return (
-    <div className="pt-24 pb-20 container mx-auto px-4 min-h-screen relative">
-      {}
-      <div className="absolute top-32 right-0 w-[350px] h-[350px] bg-secondary/6 rounded-full blur-[120px] -z-10 pointer-events-none" />
-
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-secondary mb-2 block">Dashboard Organizzatore</span>
-        <h1 className="text-3xl md:text-5xl font-black mb-2">
-          Ciao, <span className="text-gradient">{displayName}</span> 👋
+    <div className="pt-24 pb-20 container mx-auto px-4 min-h-screen bg-white">
+      <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+        <span className="text-xs font-bold uppercase tracking-wider text-primary mb-2 block">Dashboard Organizzatore</span>
+        <h1 className="text-2xl md:text-4xl font-extrabold mb-2 text-foreground">
+          Ciao, <span className="text-primary">{displayName}</span> 👋
         </h1>
-        <p className="text-foreground/50">Gestisci i tuoi eventi e le candidature degli artisti.</p>
+        <p className="text-muted text-sm font-medium">Gestisci i tuoi eventi e le candidature degli artisti.</p>
       </motion.div>
 
-      {}
+      {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {[
           { label: 'I tuoi eventi', value: events.length, icon: CalendarDays, color: 'text-primary' },
-          { label: 'In programmazione', value: events.filter(e => new Date(e.data) >= new Date()).length, icon: TrendingUp, color: 'text-secondary' },
-          { label: 'Totale foto', value: events.reduce((sum, e) => sum + getEventPhotos(e.id).length, 0), icon: ImagePlus, color: 'text-accent' },
-          { label: 'Artisti cercati', value: events.filter(e => e.artistaCercato).length, icon: Music, color: 'text-green-400' },
+          { label: 'In programmazione', value: events.filter(e => new Date(e.data) >= new Date()).length, icon: TrendingUp, color: 'text-primary' },
+          { label: 'Totale foto', value: events.reduce((sum, e) => sum + getEventPhotos(e.id).length, 0), icon: ImagePlus, color: 'text-primary' },
+          { label: 'Artisti cercati', value: events.filter(e => e.artistaCercato).length, icon: Music, color: 'text-primary' },
         ].map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="glass-panel rounded-2xl p-4 border border-border">
-            <div className={`${color} mb-2`}><Icon className="h-5 w-5" /></div>
-            <div className="text-2xl font-black">{value}</div>
-            <div className="text-xs text-foreground/50 mt-0.5">{label}</div>
+          <div key={label} className="bg-surface border border-border rounded-xl p-4 shadow-sm">
+            <div className={`${color} mb-2 bg-primary-light w-8 h-8 rounded-lg flex items-center justify-center`}><Icon className="h-4.5 w-4.5" /></div>
+            <div className="text-2xl font-extrabold text-foreground">{value}</div>
+            <div className="text-xs text-muted font-medium mt-0.5">{label}</div>
           </div>
         ))}
       </div>
 
-      {}
       <div className="mb-6">
         <Button
           onClick={() => { setShowForm(!showForm); if (showForm && !editingEvent) resetForm(); else if (showForm) { resetForm(); setShowForm(false); } }}
-          className="gap-2"
+          className="gap-2 font-semibold shadow-sm"
         >
           <CalendarPlus className="h-4 w-4" />
           {showForm ? 'Annulla' : 'Crea Nuovo Evento'}
         </Button>
       </div>
 
-      {}
+      {/* Create / Edit Form */}
       <AnimatePresence>
         {showForm && (
           <motion.div
@@ -214,69 +210,69 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden mb-8"
           >
-            <form onSubmit={handleCreate} className="glass-panel border border-border rounded-2xl p-6 space-y-4">
-              <h3 className="text-lg font-black flex items-center gap-2">
-                {editingEvent ? <><Edit2 className="h-5 w-5 text-secondary" /> Modifica Evento</> : <><CalendarPlus className="h-5 w-5 text-primary" /> Nuovo Evento</>}
+            <form onSubmit={handleCreate} className="border border-border bg-white rounded-xl p-6 space-y-4 shadow-sm">
+              <h3 className="text-lg font-bold flex items-center gap-2 text-foreground">
+                {editingEvent ? <><Edit2 className="h-5 w-5 text-primary" /> Modifica Evento</> : <><CalendarPlus className="h-5 w-5 text-primary" /> Nuovo Evento</>}
               </h3>
 
               {formError && (
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                  <XCircle className="h-4 w-4 shrink-0" /><span>{formError}</span>
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-100 text-red-650 text-sm">
+                  <XCircle className="h-4 w-4 shrink-0 text-red-650" /><span>{formError}</span>
                 </div>
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Titolo *</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Titolo *</label>
                   <input type="text" required value={titolo} onChange={e => setTitolo(e.target.value)} placeholder="Es: Hip Hop Night Milano" className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Tipo / Genere</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Tipo / Genere</label>
                   <input type="text" value={tipoEvento} onChange={e => setTipoEvento(e.target.value)} placeholder="Hip Hop, House, Concerto..." className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Luogo *</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Luogo *</label>
                   <input type="text" required value={luogo} onChange={e => setLuogo(e.target.value)} placeholder="Es: Alcatraz Milano" className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Budget Offerto (€)</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Budget Offerto (€)</label>
                   <input type="number" min="0" value={budget} onChange={e => setBudget(e.target.value)} placeholder="2000" className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Data *</label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Data *</label>
                   <input type="date" required value={data} onChange={e => setData(e.target.value)} className={inputClass} />
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Inizio *</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Inizio *</label>
                     <input type="time" required value={orarioInizio} onChange={e => setOrarioInizio(e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Fine *</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Fine *</label>
                     <input type="time" required value={orarioFine} onChange={e => setOrarioFine(e.target.value)} className={inputClass} />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Artista Cercato</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Artista Cercato</label>
                 <input type="text" value={artistaCercato} onChange={e => setArtistaCercato(e.target.value)} placeholder="Es: Rapper con 2+ anni esperienza live" className={inputClass} />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-1.5">Descrizione</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">Descrizione</label>
                 <textarea value={descrizione} onChange={e => setDescrizione(e.target.value)}
                   placeholder="Descrivi l'evento..." rows={3}
-                  className="w-full px-3 py-2 rounded-xl bg-background/50 border border-border text-foreground placeholder:text-foreground/35 focus:outline-none focus:ring-2 focus:ring-primary/40 text-sm resize-none" />
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-white text-foreground placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm resize-none" />
               </div>
 
-              {}
+              {/* Photo uploader */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/40 mb-2">Foto Evento</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">Foto Evento</label>
                 {photoPreviews.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-3">
                     {photoPreviews.map((src, i) => (
-                      <div key={i} className="relative group w-20 h-20 rounded-xl overflow-hidden border border-border">
+                      <div key={i} className="relative group w-20 h-20 rounded-lg overflow-hidden border border-border">
                         <img src={src} alt="" className="w-full h-full object-cover" />
                         <button type="button" onClick={() => setPhotoPreviews(prev => prev.filter((_, j) => j !== i))}
                           className="absolute top-1 right-1 h-5 w-5 bg-black/70 hover:bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -288,14 +284,14 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
                 )}
                 {photoPreviews.length < 5 && (
                   <button type="button" onClick={() => fileInputRef.current?.click()}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-dashed border-border hover:border-primary/50 text-foreground/50 hover:text-primary text-sm transition-colors">
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-dashed border-border hover:border-primary text-muted hover:text-primary text-xs font-semibold bg-white transition-colors cursor-pointer">
                     <ImagePlus className="h-4 w-4" /> Aggiungi foto {photoPreviews.length > 0 ? `(${photoPreviews.length}/5)` : ''}
                   </button>
                 )}
                 <input ref={fileInputRef} type="file" accept="image/*" multiple onChange={handlePhotoAdd} className="hidden" />
               </div>
 
-              <Button type="submit" isLoading={saving} className="gap-2 w-full sm:w-auto" size="lg">
+              <Button type="submit" isLoading={saving} className="gap-2 w-full sm:w-auto font-semibold shadow-sm" size="lg">
                 <Send className="h-4 w-4" /> {editingEvent ? 'Salva Modifiche' : 'Crea Evento'}
               </Button>
             </form>
@@ -303,56 +299,56 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
         )}
       </AnimatePresence>
 
-      {}
+      {/* Events List */}
       {loading ? (
         <div className="flex justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
       ) : events.length === 0 ? (
-        <div className="text-center py-20 text-foreground/40">
-          <CalendarPlus className="h-14 w-14 mx-auto mb-4 opacity-30" />
-          <p className="text-lg">Nessun evento creato. Inizia ora!</p>
+        <div className="text-center py-20 text-muted">
+          <CalendarPlus className="h-14 w-14 mx-auto mb-4 opacity-30 text-primary" />
+          <p className="text-lg font-medium">Nessun evento creato. Inizia ora!</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((ev, i) => {
             const photos = getEventPhotos(ev.id);
             return (
               <motion.div key={ev.id}
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                className="glass-panel border border-border rounded-2xl overflow-hidden flex flex-col hover:border-primary/25 transition-colors">
-                <div className="relative h-40 overflow-hidden">
+                initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
+                className="border border-border bg-white rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-card-hover duration-300">
+                <div className="relative h-40 overflow-hidden bg-secondary">
                   <img
                     src={photos.length > 0 ? photos[0] : getCategoryPhoto(ev.tipoEvento, ev.titolo)}
                     alt={ev.titolo}
                     className="w-full h-full object-cover"
                   />
                   {ev.tipoEvento && (
-                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 glass-panel rounded-full border border-border/50 text-foreground/80">
+                    <span className="absolute top-2.5 left-2.5 text-[10px] font-bold px-2 py-0.5 bg-white/95 rounded-full border border-border text-foreground/80 shadow-sm uppercase tracking-wider">
                       {ev.tipoEvento}
                     </span>
                   )}
                   {ev.budget && (
-                    <span className="absolute top-2 right-2 text-[10px] font-bold px-2 py-0.5 bg-green-500/80 text-white rounded-full">
+                    <span className="absolute top-2.5 right-2.5 text-[11px] font-bold px-2 py-0.5 bg-primary text-white rounded-full shadow-sm">
                       €{ev.budget}
                     </span>
                   )}
                 </div>
                 <div className="p-5 flex-1 flex flex-col gap-3">
-                  <h3 className="text-base font-bold line-clamp-1">{ev.titolo}</h3>
-                  <p className="text-xs text-foreground/50 line-clamp-2">{ev.descrizione || 'Nessuna descrizione'}</p>
-                  <div className="space-y-1 text-xs text-foreground/60">
-                    <div className="flex items-center gap-1.5"><CalendarDays className="h-3 w-3 text-primary" />{ev.data} · {ev.orarioInizio?.slice(0, 5)}</div>
-                    <div className="flex items-center gap-1.5"><MapPin className="h-3 w-3 text-secondary" />
-                      <a href={getMapsLinkUrl(ev.luogo)} target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors truncate">{ev.luogo}</a>
+                  <h3 className="text-base font-bold text-foreground line-clamp-1">{ev.titolo}</h3>
+                  <p className="text-xs text-muted line-clamp-2">{ev.descrizione || 'Nessuna descrizione'}</p>
+                  <div className="space-y-1 text-xs text-muted font-medium">
+                    <div className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-primary shrink-0" />{ev.data} · {ev.orarioInizio?.slice(0, 5)}</div>
+                    <div className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                      <a href={getMapsLinkUrl(ev.luogo)} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline transition-colors truncate">{ev.luogo}</a>
                     </div>
                   </div>
-                  <div className="flex gap-2 mt-auto pt-1">
-                    <Button size="sm" variant="outline" className="flex-1 gap-1" onClick={() => viewCandidature(ev)}>
+                  <div className="flex gap-2 mt-auto pt-2 border-t border-border">
+                    <Button size="sm" variant="outline" className="flex-1 gap-1 font-semibold" onClick={() => viewCandidature(ev)}>
                       <Eye className="h-3.5 w-3.5" /> Candidature
                     </Button>
-                    <Button size="sm" variant="outline" className="gap-1 hover:border-secondary/50 hover:text-secondary" onClick={() => openEdit(ev)}>
+                    <Button size="sm" variant="outline" className="gap-1 font-semibold hover:border-primary hover:text-primary" onClick={() => openEdit(ev)}>
                       <Edit2 className="h-3.5 w-3.5" />
                     </Button>
-                    <Button size="sm" variant="ghost" className="text-red-400 hover:text-red-300 hover:bg-red-500/10 px-2" onClick={() => handleDelete(ev)}>
+                    <Button size="sm" variant="ghost" className="text-red-500 hover:text-red-650 hover:bg-red-50 px-2" onClick={() => handleDelete(ev)}>
                       <Trash2 className="h-3.5 w-3.5" />
                     </Button>
                   </div>
@@ -363,25 +359,25 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
         </div>
       )}
 
-      {}
+      {/* Candidature Modal */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
             onClick={() => setSelectedEvent(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="glass-panel border border-border rounded-2xl p-6 w-full max-w-lg max-h-[80vh] overflow-y-auto"
+              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white border border-border rounded-2xl p-6 w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-xl"
               onClick={e => e.stopPropagation()}
             >
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-bold">Candidature ricevute</h3>
-                  <p className="text-sm text-foreground/50">per "{selectedEvent.titolo}"</p>
+                  <h3 className="text-lg font-bold text-foreground">Candidature ricevute</h3>
+                  <p className="text-xs text-muted font-medium">per "{selectedEvent.titolo}"</p>
                 </div>
-                <button onClick={() => setSelectedEvent(null)} className="text-foreground/40 hover:text-foreground transition-colors">
+                <button onClick={() => setSelectedEvent(null)} className="text-muted hover:text-foreground transition-colors cursor-pointer">
                   <X className="h-5 w-5" />
                 </button>
               </div>
@@ -389,23 +385,23 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
               {loadingCand ? (
                 <div className="flex justify-center py-10"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>
               ) : candidature.length === 0 ? (
-                <div className="text-center py-12 text-foreground/40">
-                  <Users className="h-12 w-12 mx-auto mb-3 opacity-30" />
-                  <p>Nessuna candidatura ricevuta ancora.</p>
+                <div className="text-center py-12 text-muted">
+                  <Users className="h-12 w-12 mx-auto mb-3 opacity-30 text-primary" />
+                  <p className="text-sm font-medium">Nessuna candidatura ricevuta ancora.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {candidature.map(c => (
-                    <div key={c.id} className="bg-background/50 border border-border rounded-2xl p-4 space-y-3">
+                    <div key={c.id} className="bg-surface border border-border rounded-xl p-4 space-y-3 shadow-sm">
                       <div className="flex items-center justify-between">
                         <Link to={`/artists/${c.artistaId}`} className="flex items-center gap-2 hover:text-primary transition-colors group">
-                          <div className="h-8 w-8 rounded-full bg-secondary/10 flex items-center justify-center">
-                            <User className="h-4 w-4 text-secondary" />
+                          <div className="h-8 w-8 rounded-full bg-primary-light flex items-center justify-center">
+                            <User className="h-4 w-4 text-primary" />
                           </div>
-                          <span className="text-sm font-bold group-hover:text-primary">Artista #{c.artistaId}</span>
+                          <span className="text-xs font-bold text-foreground group-hover:text-primary">Artista #{c.artistaId}</span>
                           <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 text-primary transition-opacity" />
                         </Link>
-                        <span className={`text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 ${statoColors[c.stato] || ''}`}>
+                        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border ${statoColors[c.stato] || ''}`}>
                           {c.stato === 'IN_ATTESA' && <Clock className="h-3 w-3" />}
                           {c.stato === 'ACCETTATA' && <CheckCircle2 className="h-3 w-3" />}
                           {c.stato === 'RIFIUTATA' && <XCircle className="h-3 w-3" />}
@@ -413,15 +409,15 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
                         </span>
                       </div>
                       {c.utentePresentazione && (
-                        <p className="text-sm text-foreground/65 italic bg-background/30 p-2.5 rounded-xl border border-border/50">"{c.utentePresentazione}"</p>
+                        <p className="text-xs text-foreground/80 leading-relaxed font-medium bg-white p-3 rounded-lg border border-border">"{c.utentePresentazione}"</p>
                       )}
-                      <p className="text-xs text-foreground/40">Inviata: {c.dataInvio}</p>
+                      <p className="text-[10px] text-muted font-medium">Inviata: {c.dataInvio}</p>
                       {c.stato === 'IN_ATTESA' && (
                         <div className="flex gap-2 pt-1">
-                          <Button size="sm" className="flex-1 gap-1 bg-green-600 hover:bg-green-700 border-transparent" onClick={() => updateStato(c.id, 'ACCETTATA')}>
+                          <Button size="sm" className="flex-1 gap-1 bg-green-600 hover:bg-green-700 text-white font-semibold shadow-sm border-transparent" onClick={() => updateStato(c.id, 'ACCETTATA')}>
                             <CheckCircle2 className="h-3.5 w-3.5" /> Accetta
                           </Button>
-                          <Button size="sm" variant="outline" className="flex-1 gap-1 text-red-400 border-red-500/30 hover:bg-red-500/10" onClick={() => updateStato(c.id, 'RIFIUTATA')}>
+                          <Button size="sm" variant="outline" className="flex-1 gap-1 text-red-655 border-red-200 hover:bg-red-50 hover:border-red-300 font-semibold" onClick={() => updateStato(c.id, 'RIFIUTATA')}>
                             <XCircle className="h-3.5 w-3.5" /> Rifiuta
                           </Button>
                         </div>
@@ -431,7 +427,7 @@ function OrganizerDashboard({ userId, displayName }: { userId: number; displayNa
                 </div>
               )}
               <div className="mt-5 pt-4 border-t border-border">
-                <Button variant="outline" className="w-full" onClick={() => setSelectedEvent(null)}>Chiudi</Button>
+                <Button variant="outline" className="w-full font-semibold" onClick={() => setSelectedEvent(null)}>Chiudi</Button>
               </div>
             </motion.div>
           </motion.div>
@@ -486,56 +482,54 @@ function ArtistDashboard({ userId, displayName }: { userId: number; displayName:
 
   const appliedIds = new Set(myCandidature.map(c => c.eventoId));
   const statoColors: Record<string, string> = {
-    IN_ATTESA: 'text-yellow-400 bg-yellow-500/10 border border-yellow-500/20',
-    ACCETTATA: 'text-green-400 bg-green-500/10 border border-green-500/20',
-    RIFIUTATA: 'text-red-400 bg-red-500/10 border border-red-500/20',
+    IN_ATTESA: 'text-yellow-600 bg-yellow-50 border border-yellow-100',
+    ACCETTATA: 'text-green-600 bg-green-50 border border-green-100',
+    RIFIUTATA: 'text-red-655 bg-red-50 border border-red-100',
   };
 
   const accepted = myCandidature.filter(c => c.stato === 'ACCETTATA').length;
   const pending = myCandidature.filter(c => c.stato === 'IN_ATTESA').length;
 
   return (
-    <div className="pt-24 pb-20 container mx-auto px-4 min-h-screen relative">
-      <div className="absolute top-32 left-0 w-[350px] h-[350px] bg-primary/6 rounded-full blur-[120px] -z-10 pointer-events-none" />
-
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">Dashboard Artista</span>
-        <h1 className="text-3xl md:text-5xl font-black mb-2">
-          Ciao, <span className="text-gradient">{displayName}</span> 🎵
+    <div className="pt-24 pb-20 container mx-auto px-4 min-h-screen bg-white">
+      <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+        <span className="text-xs font-bold uppercase tracking-wider text-primary mb-2 block">Dashboard Artista</span>
+        <h1 className="text-2xl md:text-4xl font-extrabold mb-2 text-foreground">
+          Ciao, <span className="text-primary">{displayName}</span> 🎵
         </h1>
-        <p className="text-foreground/50">Trova eventi, candidati e suona sul palco.</p>
+        <p className="text-muted text-sm font-medium">Trova eventi, candidati e suona sul palco.</p>
       </motion.div>
 
-      {}
+      {/* Stats row */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[
-          { label: 'Candidature', value: myCandidature.length, icon: Send, color: 'text-secondary' },
-          { label: 'Accettate', value: accepted, icon: CheckCircle2, color: 'text-green-400' },
-          { label: 'In Attesa', value: pending, icon: Clock, color: 'text-yellow-400' },
+          { label: 'Candidature', value: myCandidature.length, icon: Send, color: 'text-primary' },
+          { label: 'Accettate', value: accepted, icon: CheckCircle2, color: 'text-primary' },
+          { label: 'In Attesa', value: pending, icon: Clock, color: 'text-primary' },
         ].map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="glass-panel rounded-2xl p-4 border border-border text-center">
-            <div className={`${color} flex justify-center mb-2`}><Icon className="h-5 w-5" /></div>
-            <div className="text-2xl font-black">{value}</div>
-            <div className="text-xs text-foreground/50">{label}</div>
+          <div key={label} className="bg-surface border border-border rounded-xl p-4 text-center shadow-sm">
+            <div className={`${color} flex justify-center mb-2 bg-primary-light w-8 h-8 rounded-lg mx-auto items-center`}><Icon className="h-4.5 w-4.5" /></div>
+            <div className="text-2xl font-extrabold text-foreground">{value}</div>
+            <div className="text-xs text-muted font-medium mt-0.5">{label}</div>
           </div>
         ))}
       </div>
 
-      {}
-      <div className="flex gap-2 mb-7 bg-card/50 rounded-2xl p-1 w-fit border border-border">
+      {/* Tab Switcher */}
+      <div className="flex gap-1.5 mb-7 bg-secondary rounded-xl p-1 w-fit border border-border shadow-sm">
         <button
           onClick={() => setTab('events')}
-          className={`px-5 py-2 rounded-xl text-sm font-bold transition-all ${tab === 'events' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-foreground/60 hover:text-foreground'}`}
+          className={`px-5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${tab === 'events' ? 'bg-primary text-white shadow-sm' : 'text-muted hover:text-foreground'}`}
         >
-          <CalendarDays className="h-4 w-4 inline mr-1.5" />  Eventi Disponibili
+          <CalendarDays className="h-4 w-4 inline mr-1.5" /> Eventi Disponibili
         </button>
         <button
           onClick={() => setTab('candidature')}
-          className={`px-5 py-2 rounded-xl text-sm font-bold transition-all ${tab === 'candidature' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-foreground/60 hover:text-foreground'}`}
+          className={`px-5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${tab === 'candidature' ? 'bg-primary text-white shadow-sm' : 'text-muted hover:text-foreground'}`}
         >
           <Send className="h-4 w-4 inline mr-1.5" /> Le Mie Candidature
           {myCandidature.length > 0 && (
-            <span className="ml-1.5 text-[10px] bg-white/20 px-1.5 py-0.5 rounded-full">{myCandidature.length}</span>
+            <span className="ml-1.5 text-[9px] bg-white/25 text-white px-1.5 py-0.5 rounded-full font-bold">{myCandidature.length}</span>
           )}
         </button>
       </div>
@@ -544,59 +538,59 @@ function ArtistDashboard({ userId, displayName }: { userId: number; displayName:
         <div className="flex justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
       ) : tab === 'events' ? (
         events.length === 0 ? (
-          <div className="text-center py-20 text-foreground/40">
-            <Music className="h-14 w-14 mx-auto mb-4 opacity-25" />
-            <p className="text-lg">Nessun evento disponibile al momento.</p>
+          <div className="text-center py-20 text-muted">
+            <Music className="h-14 w-14 mx-auto mb-4 opacity-25 text-primary" />
+            <p className="text-lg font-medium">Nessun evento disponibile al momento.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((ev, i) => {
               const photos = getEventPhotos(ev.id);
               return (
                 <motion.div key={ev.id}
-                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="glass-panel border border-border rounded-2xl overflow-hidden flex flex-col hover:border-primary/25 transition-colors group">
-                  <div className="relative h-36 overflow-hidden">
+                  initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
+                  className="border border-border bg-white rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-card-hover duration-300 group">
+                  <div className="relative h-36 overflow-hidden bg-secondary">
                     <img
                       src={photos.length > 0 ? photos[0] : getCategoryPhoto(ev.tipoEvento, ev.titolo)}
                       alt={ev.titolo}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
                     />
                     {ev.tipoEvento && (
-                      <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 glass-panel rounded-full border border-border/50 text-foreground/80">
+                      <span className="absolute top-2.5 left-2.5 text-[10px] font-bold px-2 py-0.5 bg-white/95 rounded-full border border-border text-foreground/80 shadow-sm uppercase tracking-wider">
                         {ev.tipoEvento}
                       </span>
                     )}
-                    {ev.budget && <span className="absolute top-2 right-2 text-[10px] font-bold px-2 py-0.5 bg-green-500/80 text-white rounded-full">€{ev.budget}</span>}
+                    {ev.budget && <span className="absolute top-2.5 right-2.5 text-[10px] font-bold px-2 py-0.5 bg-primary text-white rounded-full shadow-sm">€{ev.budget}</span>}
                   </div>
                   <div className="p-4 flex-1 flex flex-col gap-2">
-                    <h3 className="font-bold line-clamp-1 group-hover:text-primary transition-colors">{ev.titolo}</h3>
-                    <p className="text-xs text-foreground/50 line-clamp-2">{ev.descrizione || 'Nessuna descrizione'}</p>
-                    <div className="space-y-1 text-xs text-foreground/60 mt-auto">
-                      <div className="flex items-center gap-1.5"><CalendarDays className="h-3 w-3 text-primary" />{ev.data} · {ev.orarioInizio?.slice(0, 5)}</div>
-                      <div className="flex items-center gap-1.5"><MapPin className="h-3 w-3 text-secondary" />
-                        <a href={getMapsLinkUrl(ev.luogo)} target="_blank" rel="noopener noreferrer" className="hover:text-secondary truncate">{ev.luogo}</a>
+                    <h3 className="font-bold text-foreground line-clamp-1 group-hover:text-primary transition-colors">{ev.titolo}</h3>
+                    <p className="text-xs text-muted line-clamp-2">{ev.descrizione || 'Nessuna descrizione'}</p>
+                    <div className="space-y-1 text-xs text-muted font-medium mt-auto">
+                      <div className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-primary shrink-0" />{ev.data} · {ev.orarioInizio?.slice(0, 5)}</div>
+                      <div className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                        <a href={getMapsLinkUrl(ev.luogo)} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline truncate">{ev.luogo}</a>
                       </div>
                     </div>
 
                     {appliedIds.has(ev.id) ? (
-                      <div className="flex items-center gap-2 text-xs text-green-400 bg-green-500/10 border border-green-500/20 rounded-xl px-3 py-2 mt-2">
+                      <div className="flex items-center justify-center gap-2 text-xs text-green-600 bg-green-50 border border-green-100 rounded-lg px-3 py-2 mt-2 font-semibold">
                         <CheckCircle2 className="h-4 w-4" /> Candidatura inviata
                       </div>
                     ) : applying === ev.id ? (
                       <div className="space-y-2 mt-2">
                         <textarea value={message} onChange={e => setMessage(e.target.value)}
                           placeholder="Presentati brevemente..." rows={2}
-                          className="w-full px-3 py-2 rounded-xl bg-background/50 border border-border text-foreground text-xs placeholder:text-foreground/35 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none" />
+                          className="w-full px-3 py-2 rounded-lg border border-border bg-white text-foreground text-xs placeholder:text-muted/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none" />
                         <div className="flex gap-2">
-                          <Button size="sm" isLoading={sending} className="flex-1 gap-1" onClick={() => handleApply(ev.id)}>
+                          <Button size="sm" isLoading={sending} className="flex-1 gap-1 font-semibold shadow-sm" onClick={() => handleApply(ev.id)}>
                             <Send className="h-3.5 w-3.5" /> Invia
                           </Button>
-                          <Button size="sm" variant="ghost" onClick={() => { setApplying(null); setMessage(''); }}>Annulla</Button>
+                          <Button size="sm" variant="ghost" className="font-semibold text-muted hover:bg-secondary" onClick={() => { setApplying(null); setMessage(''); }}>Annulla</Button>
                         </div>
                       </div>
                     ) : (
-                      <Button variant="outline" size="sm" className="w-full gap-2 mt-2 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all" onClick={() => setApplying(ev.id)}>
+                      <Button variant="outline" size="sm" className="w-full gap-2 mt-2 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all font-semibold" onClick={() => setApplying(ev.id)}>
                         <Music className="h-4 w-4" /> Candidati
                       </Button>
                     )}
@@ -608,9 +602,9 @@ function ArtistDashboard({ userId, displayName }: { userId: number; displayName:
         )
       ) : (
         myCandidature.length === 0 ? (
-          <div className="text-center py-20 text-foreground/40">
-            <Send className="h-14 w-14 mx-auto mb-4 opacity-25" />
-            <p className="text-lg">Non hai ancora inviato candidature.</p>
+          <div className="text-center py-20 text-muted">
+            <Send className="h-14 w-14 mx-auto mb-4 opacity-25 text-primary" />
+            <p className="text-lg font-medium">Non hai ancora inviato candidature.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -618,24 +612,24 @@ function ArtistDashboard({ userId, displayName }: { userId: number; displayName:
               const ev = events.find(e => e.id === c.eventoId);
               return (
                 <motion.div key={c.id}
-                  initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
-                  className="glass-panel border border-border rounded-2xl p-5 flex flex-col md:flex-row md:items-center gap-4">
+                  initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
+                  className="border border-border bg-white rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-4 shadow-sm">
                   <div className="flex-1">
-                    <Link to={`/events/${c.eventoId}`} className="font-bold hover:text-primary transition-colors">{ev?.titolo || `Evento #${c.eventoId}`}</Link>
+                    <Link to={`/events/${c.eventoId}`} className="font-bold text-foreground hover:text-primary transition-colors">{ev?.titolo || `Evento #${c.eventoId}`}</Link>
                     {ev && (
-                      <div className="flex items-center gap-4 text-xs text-foreground/50 mt-1">
-                        <span className="flex items-center gap-1"><CalendarDays className="h-3 w-3" />{ev.data}</span>
-                        <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{ev.luogo}</span>
+                      <div className="flex items-center gap-4 text-xs text-muted font-medium mt-1">
+                        <span className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-primary" />{ev.data}</span>
+                        <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-primary" />{ev.luogo}</span>
                       </div>
                     )}
-                    {c.utentePresentazione && <p className="text-xs text-foreground/45 mt-1.5 italic">"{c.utentePresentazione}"</p>}
+                    {c.utentePresentazione && <p className="text-xs text-foreground/80 bg-surface p-2.5 rounded-lg border border-border mt-2 font-medium">"{c.utentePresentazione}"</p>}
                   </div>
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="text-xs text-foreground/40">{c.dataInvio}</span>
-                    <span className={`text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 ${statoColors[c.stato] || ''}`}>
-                      {c.stato === 'IN_ATTESA' && <Clock className="h-3 w-3" />}
-                      {c.stato === 'ACCETTATA' && <CheckCircle2 className="h-3 w-3" />}
-                      {c.stato === 'RIFIUTATA' && <XCircle className="h-3 w-3" />}
+                  <div className="flex items-center gap-3 shrink-0 justify-between md:justify-end">
+                    <span className="text-xs text-muted font-medium">{c.dataInvio}</span>
+                    <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 border ${statoColors[c.stato] || ''}`}>
+                      {c.stato === 'IN_ATTESA' && <Clock className="h-3.5 w-3.5" />}
+                      {c.stato === 'ACCETTATA' && <CheckCircle2 className="h-3.5 w-3.5" />}
+                      {c.stato === 'RIFIUTATA' && <XCircle className="h-3.5 w-3.5" />}
                       {c.stato}
                     </span>
                   </div>
