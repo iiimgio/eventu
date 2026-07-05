@@ -1,0 +1,20 @@
+services:
+  postgres-eventu:
+    image: postgres:15
+    container_name: postgres-eventu
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Its2025!
+      POSTGRES_DB: eventu
+    ports:
+      - "5434:5432"
+    volumes:
+      - eventu_data:/var/lib/postgresql/data
+    networks:
+      - eventu-net
+
+networks:
+  eventu-net:
+
+volumes:
+  eventu_data:

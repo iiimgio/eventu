@@ -25,6 +25,7 @@ public class ArtistaController {
     @PostMapping
     public ResponseEntity<ArtistaDto> crea(@RequestBody ArtistaDto dto) {
         Artista artista = artistaMapper.toEntity(dto);
+        artista.setId(null);
         Artista salvato = artistaService.save(artista);
         return ResponseEntity.ok(artistaMapper.toDto(salvato));
     }

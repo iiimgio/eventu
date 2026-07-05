@@ -10,8 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ArtistaDto {
 
-
+    private Long id;
+    private String nome;
+    private String cognome;
     private String email;
+    private String password;
     private Role role;
     private String nomeArtista;
     private String cognomeArtista;
@@ -23,6 +26,3 @@ public class ArtistaDto {
     private String linkSocial;
     private String linkVideo;
 }
-
-
-

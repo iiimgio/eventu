@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class EventoService {
+
     @Autowired
     private EventoRepo repo;
 
@@ -28,5 +29,4 @@ public class EventoService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
-
 }

@@ -18,4 +18,3 @@ public interface CandidaturaMapper {
     @Mapping(source = "utentePresentazione", target = "messaggio")
     Candidatura toEntity(CandidaturaDto dto);
 }
-

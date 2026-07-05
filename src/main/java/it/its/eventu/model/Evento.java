@@ -26,12 +26,15 @@ public class Evento {
     private Double budget;
 
     private LocalDate data;
+    private LocalDate dataFine;
     private LocalTime orarioInizio;
     private LocalTime orarioFine;
 
+    private String artistaCercato;
+
     @ManyToOne
     @JoinColumn(name = "organizzatore_id", nullable = false)
-    private Organizzatore organizzatore; // solo organizzatore può creare eventi
+    private Organizzatore organizzatore; 
 
     @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
     private List<Candidatura> candidature;

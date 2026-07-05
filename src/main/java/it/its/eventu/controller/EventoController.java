@@ -26,16 +26,11 @@ public class EventoController {
     @Autowired
     private EventoMapper eventoMapper;
 
-
     @PostMapping("/organizzatore/{organizzatoreId}")
     public ResponseEntity<EventoDto> creaEvento(@PathVariable Long organizzatoreId,
                                                 @RequestBody EventoDto eventoDto) {
         Organizzatore organizzatore = organizzatoreService.findById(organizzatoreId)
                 .orElseThrow(() -> new RuntimeException("Organizzatore non trovato"));
-
-        if (eventoDto.getOrarioFine().isBefore(eventoDto.getOrarioInizio())) {
-            return ResponseEntity.badRequest().body(null);
-        }
 
         Evento evento = eventoMapper.toEntity(eventoDto);
         evento.setOrganizzatore(organizzatore);
@@ -44,8 +39,7 @@ public class EventoController {
         return ResponseEntity.ok(eventoMapper.toDto(salvato));
     }
 
-
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<EventoDto>> listaEventi() {
         return ResponseEntity.ok(
                 eventoService.findAll().stream()
@@ -53,7 +47,6 @@ public class EventoController {
                         .collect(Collectors.toList())
         );
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<EventoDto> dettaglioEvento(@PathVariable Long id) {
@@ -72,11 +65,6 @@ public class EventoController {
         if (!evento.getOrganizzatore().getId().equals(organizzatoreId)) {
             return ResponseEntity.badRequest().body(null);
         }
-
-        if (eventoDto.getOrarioFine().isBefore(eventoDto.getOrarioInizio())) {
-            return ResponseEntity.badRequest().body(null);
-        }
-
 
         Evento aggiornato = eventoMapper.toEntity(eventoDto);
         aggiornato.setId(evento.getId());

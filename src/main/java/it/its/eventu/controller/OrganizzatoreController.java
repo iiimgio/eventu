@@ -13,21 +13,22 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/organizzatori")
-public class OrganizzatoreController {@Autowired
-private OrganizzatoreService organizzatoreService;
+public class OrganizzatoreController {
+
+    @Autowired
+    private OrganizzatoreService organizzatoreService;
 
     @Autowired
     private OrganizzatoreMapper organizzatoreMapper;
 
-    // ✅ Crea organizzatore
     @PostMapping
     public ResponseEntity<OrganizzatoreDto> crea(@RequestBody OrganizzatoreDto dto) {
+        dto.setId(null);
         Organizzatore organizzatore = organizzatoreMapper.toEntity(dto);
         Organizzatore salvato = organizzatoreService.save(organizzatore);
         return ResponseEntity.ok(organizzatoreMapper.toDto(salvato));
     }
 
-    // ✅ Lista organizzatori
     @GetMapping
     public ResponseEntity<List<OrganizzatoreDto>> lista() {
         return ResponseEntity.ok(
@@ -37,7 +38,6 @@ private OrganizzatoreService organizzatoreService;
         );
     }
 
-    // ✅ Dettaglio organizzatore
     @GetMapping("/{id}")
     public ResponseEntity<OrganizzatoreDto> dettaglio(@PathVariable Long id) {
         Organizzatore organizzatore = organizzatoreService.findById(id)
@@ -45,21 +45,19 @@ private OrganizzatoreService organizzatoreService;
         return ResponseEntity.ok(organizzatoreMapper.toDto(organizzatore));
     }
 
-    // ✅ Modifica organizzatore
     @PutMapping("/{id}")
     public ResponseEntity<OrganizzatoreDto> modifica(@PathVariable Long id,
                                                      @RequestBody OrganizzatoreDto dto) {
-        Organizzatore organizzatore = organizzatoreService.findById(id)
+        Organizzatore esistente = organizzatoreService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Organizzatore non trovato"));
 
         Organizzatore aggiornato = organizzatoreMapper.toEntity(dto);
-        aggiornato.setId(organizzatore.getId());
+        aggiornato.setId(esistente.getId());
 
         Organizzatore salvato = organizzatoreService.save(aggiornato);
         return ResponseEntity.ok(organizzatoreMapper.toDto(salvato));
     }
 
-    // ✅ Elimina organizzatore
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> elimina(@PathVariable Long id) {
         organizzatoreService.delete(id);

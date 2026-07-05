@@ -13,8 +13,9 @@ public class EventoDto {
     private String tipoEvento;
     private Double budget;
     private LocalDate data;
+    private LocalDate dataFine;
     private LocalTime orarioInizio;
     private LocalTime orarioFine;
+    private String artistaCercato;
     private Long organizzatoreId;
 }
-
