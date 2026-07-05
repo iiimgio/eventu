@@ -12,15 +12,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-primary hover:bg-primary-hover text-white border-transparent shadow-sm transition-colors',
+    'bg-primary hover:bg-primary-hover text-white border-transparent shadow-[0_10px_30px_-12px_rgba(139,92,246,0.45)] transition-all',
   secondary:
-    'bg-secondary hover:bg-border/60 text-foreground border-transparent transition-colors',
+    'bg-secondary hover:bg-border/70 text-foreground border-transparent transition-colors',
   outline:
-    'bg-white text-foreground border-border hover:border-border-hover hover:bg-surface transition-colors',
+    'bg-[#14141c] text-foreground border-border hover:border-primary/50 hover:bg-[#1b1b24] transition-colors',
   ghost:
-    'bg-transparent text-foreground/80 border-transparent hover:bg-surface hover:text-foreground transition-colors',
+    'bg-transparent text-foreground/80 border-transparent hover:bg-white/5 hover:text-foreground transition-colors',
   white:
-    'bg-white text-primary hover:bg-surface border-transparent shadow-sm transition-colors',
+    'bg-white/95 text-primary hover:bg-white border-transparent shadow-[0_8px_24px_-10px_rgba(255,255,255,0.35)] transition-all',
 };
 
 const sizeClasses: Record<Size, string> = {

@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #000000;
-  --color-foreground: #ffffff;
-  --color-primary: #9135ff;
-  --color-primary-hover: #6f26cc;
-  --color-primary-light: rgba(145, 53, 255, 0.08);
-  --color-purple: #9135ff;
-  --color-purple-dark: #6f26cc;
-  --color-purple-light: #bfa3ff;
-  --color-secondary: #0a0a0a;
-  --color-muted: #bdbdbd;
-  --color-card: #0a0a0a;
-  --color-border: #222222;
-  --color-border-hover: #333333;
-  --color-surface: #070707;
+  --color-background: #06060a;
+  --color-foreground: #f5f7ff;
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #7c3aed;
+  --color-primary-light: rgba(139, 92, 246, 0.14);
+  --color-purple: #8b5cf6;
+  --color-purple-dark: #7c3aed;
+  --color-purple-light: #cbb8ff;
+  --color-secondary: #111117;
+  --color-muted: #a4a8b6;
+  --color-card: #12121a;
+  --color-border: #2a2a35;
+  --color-border-hover: #3d3d4c;
+  --color-surface: #0b0b10;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
@@ -39,11 +39,13 @@
 @layer base {
   body {
     background-color: var(--color-background);
+    background-image: radial-gradient(circle at top left, rgba(139, 92, 246, 0.16), transparent 32%);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color-scheme: dark;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -55,14 +57,14 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #f7f7f7;
+    background: #0f0f14;
   }
   ::-webkit-scrollbar-thumb {
-    background: #d8d8d8;
+    background: #3c3c49;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #b0b0b0;
+    background: #575767;
   }
 
   input:focus-visible,
@@ -75,10 +77,10 @@
 
 /* Fivefoot-inspired utilities */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(18, 18, 26, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-nav-light {
@@ -93,28 +95,28 @@
 }
 
 .card-elevated {
-  background: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
   border: 1px solid var(--color-border);
   border-radius: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 8px 24px -8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 12px 32px -18px rgba(139, 92, 246, 0.3);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-elevated-hover:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 16px 40px -12px rgba(232, 57, 44, 0.1);
-  border-color: var(--color-border-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), 0 18px 46px -20px rgba(139, 92, 246, 0.38);
+  border-color: rgba(139, 92, 246, 0.38);
   transform: translateY(-2px);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #9135ff 0%, #6f26cc 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #c4b5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #9135ff 0%, #6f26cc 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
 }
 
 .section-divider {
@@ -129,8 +131,9 @@
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 9999px;
-  background: rgba(145, 53, 255, 0.08);
-  color: #9135ff;
+  background: rgba(139, 92, 246, 0.16);
+  color: #d8ccff;
+  border: 1px solid rgba(139, 92, 246, 0.24);
 }
 
 .input-field {
@@ -138,7 +141,7 @@
   padding: 0.75rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: 0.875rem;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.035);
   font-size: 0.9375rem;
   color: var(--color-foreground);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -147,7 +150,7 @@
 .input-field:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(145, 53, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.16);
 }
 
 .input-field::placeholder {
@@ -156,7 +159,7 @@
 
 /* Pill button — Fivefoot style */
 .btn-pill-white {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
   color: var(--color-primary);
   border-radius: 9999px;
   font-weight: 600;
@@ -164,7 +167,7 @@
 }
 
 .btn-pill-white:hover {
-  background: #f7f7f7;
+  background: #f7f8ff;
   transform: scale(1.02);
 }
 
@@ -184,13 +187,22 @@
 .text-foreground {
   color: var(--color-foreground) !important;
 }
+.text-foreground\/70,
+.text-foreground\/80,
+.text-foreground\/60,
+.text-foreground\/50 {
+  color: rgba(245, 247, 255, 0.78) !important;
+}
+.text-primary {
+  color: var(--color-primary) !important;
+}
 .border-border {
   border-color: var(--color-border) !important;
 }
 
 /* Make sure inputs and cards match dark palette */
 .input-field {
-  background: var(--color-card) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
   color: var(--color-foreground) !important;
   border-color: var(--color-border) !important;
 }
