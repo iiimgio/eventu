@@ -167,3 +167,30 @@
   background: #f7f7f7;
   transform: scale(1.02);
 }
+
+/* Dark theme overrides: map common light utilities to dark tokens so components using
+   `bg-white` or `bg-surface` render correctly in the dark theme without changing
+   all JSX classes. */
+.bg-white {
+  background-color: var(--color-card) !important;
+  color: var(--color-foreground) !important;
+}
+.bg-surface {
+  background-color: var(--color-surface) !important;
+}
+.text-muted {
+  color: var(--color-muted) !important;
+}
+.text-foreground {
+  color: var(--color-foreground) !important;
+}
+.border-border {
+  border-color: var(--color-border) !important;
+}
+
+/* Make sure inputs and cards match dark palette */
+.input-field {
+  background: var(--color-card) !important;
+  color: var(--color-foreground) !important;
+  border-color: var(--color-border) !important;
+}
